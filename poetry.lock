@@ -547,6 +547,7 @@ url = "https://github.com/sushi-chaaaan/dispander.git"
 reference = "custom-embed"
 resolved_reference = "73fca4d07eeee46a34049871832d2752554d9a5a"
 
+
 [[package]]
 name = "flake8"
 version = "6.0.0"
