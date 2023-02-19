@@ -3,7 +3,7 @@ from typing import TYPE_CHECKING
 
 import discord
 from discord import app_commands
-from discord.ext import commands  # type: ignore
+from discord.ext import commands
 
 if TYPE_CHECKING:
     # import some original class
