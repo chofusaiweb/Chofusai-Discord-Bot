@@ -102,8 +102,3 @@ jobs:
       uses: github/codeql-action/analyze@v2
       with:
         category: "/language:${{matrix.language}}"
-
-    - uses: pre-commit/action@v3.0.0
-    - name: pre-commit-ci-lite
-      uses: pre-commit-ci/lite-action@v1.0.0
-      if: always()
