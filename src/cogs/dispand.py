@@ -17,7 +17,7 @@ class Dispander(commands.Cog):
 
     @commands.Cog.listener("on_message")
     async def on_message(self, message: discord.Message):
-        if message.author.bot:
+        if message.author.id == self.bot.user.id:  # type: ignore
             return
 
         embeds: list[discord.Embed] = await dispand(self.bot, message)

@@ -542,7 +542,7 @@ develop = false
 type = "git"
 url = "https://github.com/sushi-chaaaan/dispander.git"
 reference = "dpy2-return-embeds"
-resolved_reference = "810c38cc1b903ace229179c732e1523a2d0eb2f5"
+resolved_reference = "c8e7f16775d6035d45d7d37eaaaeac27e29ade2a"
 
 [[package]]
 name = "flake8"
