@@ -1,0 +1,38 @@
+name: Docker Image CI
+
+on:
+  push:
+    branches: [ "main" ]
+    paths-ignore:
+      - '**.md'
+      - '.vscode/**'
+      - '.env.example'
+      - 'railway.toml'
+      - 'renovate.json'
+  pull_request:
+    branches: [ "main" ]
+    paths-ignore:
+      - '**.md'
+      - '.vscode/**'
+      - '.env.example'
+      - 'railway.toml'
+      - 'renovate.json'
+
+jobs:
+  docker:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+      - name: Set up QEMU
+        uses: docker/setup-qemu-action@v2
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v2
+
+      - name: Build
+        uses: docker/build-push-action@v4
+        with:
+          context: .
+          push: false
+          cache-from: type=gha
+          cache-to: type=gha, mode=max
