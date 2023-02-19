@@ -501,7 +501,7 @@ files = [
 
 [[package]]
 name = "discord.py"
-version = "2.2.0a4742+g2cde1133f"
+version = "2.2.0a4742+g2cde1133"
 description = "A Python wrapper for the Discord API"
 category = "main"
 optional = false
@@ -527,6 +527,22 @@ type = "git"
 url = "https://github.com/Rapptz/discord.py.git"
 reference = "master"
 resolved_reference = "2cde1133f96837fa7d899d75b1b7cdd8f10a8c44"
+
+[[package]]
+name = "dispander"
+version = "0.5.0"
+description = "Discord Message URL Expander"
+category = "main"
+optional = false
+python-versions = "*"
+files = []
+develop = false
+
+[package.source]
+type = "git"
+url = "https://github.com/sushi-chaaaan/dispander.git"
+reference = "dpy2-return-embeds"
+resolved_reference = "57e96c01f80cc0b046453c759f894918970581c1"
 
 [[package]]
 name = "flake8"
@@ -1227,4 +1243,4 @@ multidict = ">=4.0"
 [metadata]
 lock-version = "2.0"
 python-versions = "^3.10"
-content-hash = "bf97522a398b027276b5730b834f86ba6c19d6f3904d7b62dc4569f8fd13930e"
+content-hash = "77a06212cee41b8be1e233186a5b127680a01738ef1ae4081736d23c075e3be5"

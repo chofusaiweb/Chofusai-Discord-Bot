@@ -11,6 +11,8 @@ discord-py = { git = "https://github.com/Rapptz/discord.py.git", rev = "master",
     "voice",
     "speed",
 ] }
+dispander = { git = "https://github.com/sushi-chaaaan/dispander.git", rev = "dpy2-return-embeds" }
+
 
 [tool.poetry.group.dev.dependencies]
 black = "^22.12.0"
@@ -38,7 +40,6 @@ skip_gitignore = true
 [tool.mypy]
 python_version = "3.10"
 exclude = [".venv"]
-plugins = ["pydantic.mypy"]
 follow_imports = "silent"
 warn_redundant_casts = true
 warn_unused_ignores = true
