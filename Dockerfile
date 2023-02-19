@@ -1,4 +1,4 @@
-FROM python:3.10-buster as builder
+FROM python:3.11-buster as builder
 
 WORKDIR /opt
 
@@ -17,7 +17,7 @@ RUN pip install --no-cache-dir -U pip  &&\
     pip install --no-cache-dir -r requirements.txt
 
 
-FROM python:3.10-slim-buster as runner
+FROM python:3.11-slim-buster as runner
 
 WORKDIR /app
 
