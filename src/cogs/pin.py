@@ -26,9 +26,9 @@ class PinMessage(commands.Cog):
         await interaction.response.defer(ephemeral=True)
 
         if message.pinned:
-            res = await self.pin_message(message)
-        else:
             res = await self.unpin_message(message)
+        else:
+            res = await self.pin_message(message)
 
         await interaction.followup.send(res, ephemeral=True)
         return
