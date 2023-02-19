@@ -30,7 +30,7 @@ class Bot(commands.Bot):
         self.synced_cmd_mention: list[str] = []
 
         super().__init__(
-            command_prefix="!mc ",
+            command_prefix="! ch",
             intents=intents,
             **kwargs,
         )
