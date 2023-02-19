@@ -11,7 +11,7 @@ discord-py = { git = "https://github.com/Rapptz/discord.py.git", rev = "master",
     "voice",
     "speed",
 ] }
-dispander = { git = "https://github.com/sushi-chaaaan/dispander.git", rev = "dpy2-return-embeds" }
+dispander = { git = "https://github.com/sushi-chaaaan/dispander.git", rev = "custom-embed" }
 
 
 [tool.poetry.group.dev.dependencies]
