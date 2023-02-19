@@ -36,3 +36,7 @@ jobs:
           push: false
           cache-from: type=gha
           cache-to: type=gha, mode=max
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
