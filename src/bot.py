@@ -74,7 +74,7 @@ class Bot(commands.Bot):
         pass
 
     def print_status(self) -> None:
-        self.logger.info(f"Logged in as {self.user} (ID: {self.user.id})")  # pyright: ignore
+        self.logger.info(f"Logged in as {self.user} (ID: {self.user.id})")  # type: ignore
         self.logger.info(f"Connected to {len(self.guilds)} guilds")  # pyright: ignore
         self.logger.info("Bot is ready")
 
@@ -87,7 +87,7 @@ class Bot(commands.Bot):
     #         traces_sample_rate=1.0,
     #     )
 
-    def run(self) -> None:
+    def run(self) -> None:  # type: ignore
         try:
             asyncio.run(self.runner())
         except Exception as e:
