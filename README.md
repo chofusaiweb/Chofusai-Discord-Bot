@@ -1,3 +1,7 @@
+[![CodeQL](https://github.com/sushi-chaaaan/Marucho-73rd-Bot/actions/workflows/python-ci.yml/badge.svg)](https://github.com/sushi-chaaaan/Marucho-73rd-Bot/actions/workflows/python-ci.yml)
+[![Docker Image CI](https://github.com/sushi-chaaaan/Marucho-73rd-Bot/actions/workflows/docker-ci.yml/badge.svg)](https://github.com/sushi-chaaaan/Marucho-73rd-Bot/actions/workflows/docker-ci.yml)
+[![pre-commit](https://github.com/sushi-chaaaan/Marucho-73rd-Bot/actions/workflows/pre-commit.yml/badge.svg)](https://github.com/sushi-chaaaan/Marucho-73rd-Bot/actions/workflows/pre-commit.yml)
+
 # dpy-template
 
 template to make [discord.py](https://github.com/Rapptz/discord.py) dev environment with [poetry](https://github.com/python-poetry/poetry) and [pre-commit](https://pre-commit.com).
