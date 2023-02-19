@@ -2,7 +2,9 @@
 
 template to make [discord.py](https://github.com/Rapptz/discord.py) dev environment with [poetry](https://github.com/python-poetry/poetry) and [pre-commit](https://pre-commit.com).
 
-some useful GithubActions are contained.
+some useful Github Actions are contained.
+
+you need to setup [pre-commit.ci lite](https://pre-commit.ci/lite.html) to use GitHub Actions fully.
 
 ## Installation
 
@@ -39,3 +41,11 @@ set Environment Variables in `.env`.
 ```bash
   docker compose up
 ```
+
+## Deployment
+
+To deploy this project to [Railway](https://railway.app/), just signup and
+connect your repository to your Railway project.
+
+You can enable `Check Suites` in deploy settings on Railway
+to wait workflow runs before deployment.
