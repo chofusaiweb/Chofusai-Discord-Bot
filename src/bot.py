@@ -44,7 +44,10 @@ class Bot(commands.Bot):
         self.print_status()
 
     async def load_exts(self, reload: bool = False) -> None:
-        ext_paths = ["src.cogs.cog"]
+        ext_paths = [
+            "src.cogs.cog",
+            "src.cogs.pin",
+        ]
         if ext_paths is None:
             return
 
