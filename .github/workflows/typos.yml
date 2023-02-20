@@ -16,3 +16,7 @@ jobs:
 
       - name: typos-action
         uses: crate-ci/typos@v1.12.12
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
