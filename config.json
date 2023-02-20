@@ -1,0 +1,7 @@
+{
+    "cogs": [
+        "src.cogs.dispand",
+        "src.cogs.pin"
+    ],
+    "prefix": "!ch "
+}
