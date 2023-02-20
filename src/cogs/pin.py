@@ -5,6 +5,8 @@ import discord
 from discord import app_commands
 from discord.ext import commands
 
+from src.text.error import ErrorText
+
 if TYPE_CHECKING:
     # import some original class
     from src.bot import Bot
@@ -38,16 +40,16 @@ class PinMessage(commands.Cog):
         try:
             await message.pin(reason=f"by {author}")
         except discord.Forbidden as e:
-            response = "ピン留めに必要な権限がBotに与えられていません。"
+            response = ErrorText.FORBIDDEN
             self.bot.logger.error(response, exc_info=e)
         except discord.NotFound as e:
-            response = "メッセージやチャンネルが見つかりませんでした。"
+            response = ErrorText.CHANNEL_OR_MESSAGE_NOT_FOUND
             self.bot.logger.error(response, exc_info=e)
         except discord.HTTPException as e:
-            response = "ピン留めに失敗しました。\n既にチャンネルに50個以上のピン留めがある可能性があります。"
+            response = ErrorText.FAILED_TO_PIN
             self.bot.logger.error(response, exc_info=e)
         except Exception as e:
-            response = "不明なエラーが発生しました。"
+            response = ErrorText.UNKNOWN_ERROR
             self.bot.logger.error(response, exc_info=e)
         else:
             response = "ピン留めしました。"
@@ -58,16 +60,16 @@ class PinMessage(commands.Cog):
         try:
             await message.unpin(reason=f"by {author}")
         except discord.Forbidden as e:
-            response = "ピン留めの解除に必要な権限がBotに与えられていません。"
+            response = ErrorText.FORBIDDEN
             self.bot.logger.error(response, exc_info=e)
         except discord.NotFound as e:
-            response = "メッセージやチャンネルが見つかりませんでした。"
+            response = ErrorText.CHANNEL_OR_MESSAGE_NOT_FOUND
             self.bot.logger.error(response, exc_info=e)
         except discord.HTTPException as e:
-            response = "ピン留めの解除に失敗しました。"
+            response = ErrorText.FAILED_TO_UNPIN
             self.bot.logger.error(response, exc_info=e)
         except Exception as e:
-            response = "不明なエラーが発生しました。"
+            response = ErrorText.UNKNOWN_ERROR
             self.bot.logger.error(response, exc_info=e)
         else:
             response = "ピン留めを解除しました。"
