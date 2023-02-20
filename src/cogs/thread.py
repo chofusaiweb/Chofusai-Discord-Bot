@@ -102,7 +102,7 @@ class Thread(commands.Cog):
             return
 
         async with UnarchiveClient() as redis:
-            is_already_target = await redis.is_unarchive_target(interaction.channel.id)
+            is_already_target = await redis.is_target(interaction.channel.id)
 
         res = "このスレッドはアーカイブ自動解除の対象です。" if is_already_target else "このスレッドはアーカイブ自動解除の対象ではありません。"
         await interaction.followup.send(res, ephemeral=True)
@@ -114,7 +114,7 @@ class Thread(commands.Cog):
         await interaction.response.defer(ephemeral=True)
 
         async with UnarchiveClient() as redis:
-            targets = await redis.get_unarchive_targets()
+            targets = await redis.get_targets()
 
         if not targets or targets == ():
             embed = discord.Embed(
@@ -138,13 +138,13 @@ class Thread(commands.Cog):
     async def toggle_unarchive(self, thread_id: int, on: bool):
         async with UnarchiveClient() as redis:
             if on:
-                return await redis.add_unarchive_target(thread_id)
+                return await redis.add_target(thread_id)
             else:
-                return await redis.remove_unarchive_target(thread_id)
+                return await redis.remove_target(thread_id)
 
     async def get_targets(self) -> tuple[int, ...]:
         async with UnarchiveClient() as redis:
-            return await redis.get_unarchive_targets()
+            return await redis.get_targets()
 
 
 async def setup(bot: "Bot"):
