@@ -7,14 +7,13 @@ from discord.ext import commands
 
 from db.redis import UnarchiveClient
 from src.text.error import ErrorText
+from utils.finder import Finder
 
 if TYPE_CHECKING:
     # import some original class
     from src.bot import Bot
 
     pass
-
-from utils.finder import Finder
 
 
 class Thread(commands.Cog):
