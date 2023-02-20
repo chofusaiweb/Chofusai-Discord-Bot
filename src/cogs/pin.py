@@ -24,18 +24,19 @@ class PinMessage(commands.Cog):
 
     async def ctx_pin_message_callback(self, interaction: discord.Interaction, message: discord.Message):
         await interaction.response.defer(ephemeral=True)
+        author_name = str(interaction.user)
 
         if message.pinned:
-            res = await self.unpin_message(message)
+            res = await self.unpin_message(author_name, message)
         else:
-            res = await self.pin_message(message)
+            res = await self.pin_message(author_name, message)
 
         await interaction.followup.send(res, ephemeral=True)
         return
 
-    async def pin_message(self, message: discord.Message) -> str:
+    async def pin_message(self, author: str, message: discord.Message) -> str:
         try:
-            await message.pin()
+            await message.pin(reason=f"by {author}")
         except discord.Forbidden as e:
             response = "ピン留めに必要な権限がBotに与えられていません。"
             self.bot.logger.error(response, exc_info=e)
@@ -53,17 +54,17 @@ class PinMessage(commands.Cog):
 
         return response
 
-    async def unpin_message(self, message: discord.Message) -> str:
+    async def unpin_message(self, author: str, message: discord.Message) -> str:
         try:
-            await message.unpin()
+            await message.unpin(reason=f"by {author}")
         except discord.Forbidden as e:
-            response = "ピン留め解除に必要な権限がBotに与えられていません。"
+            response = "ピン留めの解除に必要な権限がBotに与えられていません。"
             self.bot.logger.error(response, exc_info=e)
         except discord.NotFound as e:
             response = "メッセージやチャンネルが見つかりませんでした。"
             self.bot.logger.error(response, exc_info=e)
         except discord.HTTPException as e:
-            response = "ピン留め解除に失敗しました。"
+            response = "ピン留めの解除に失敗しました。"
             self.bot.logger.error(response, exc_info=e)
         except Exception as e:
             response = "不明なエラーが発生しました。"

@@ -1,5 +1,7 @@
 import asyncio
+import json
 import os
+from typing import Any
 
 import discord
 
@@ -17,6 +19,7 @@ if not __debug__:
 class Bot(commands.Bot):
     def __init__(self, **kwargs):
         # self.init_sentry()
+        self.config = self.load_config()
         self.logger = getMyLogger(__name__)
         self.app_cmd_sync_target = discord.Object(int(os.environ["GUILD_ID"]))
 
@@ -30,7 +33,7 @@ class Bot(commands.Bot):
         self.synced_cmd_mention: list[str] = []
 
         super().__init__(
-            command_prefix="!ch ",
+            command_prefix=self.config.get("prefix", "!"),
             intents=intents,
             **kwargs,
         )
@@ -44,10 +47,7 @@ class Bot(commands.Bot):
         self.print_status()
 
     async def load_exts(self, reload: bool = False) -> None:
-        ext_paths = [
-            "src.cogs.dispand",
-            "src.cogs.pin",
-        ]
+        ext_paths = self.config.get("cogs", None)
         if ext_paths is None:
             return
 
@@ -71,6 +71,10 @@ class Bot(commands.Bot):
 
     async def setup_views(self) -> None:
         pass
+
+    def load_config(self) -> dict[str, Any]:
+        with open("config.json", "r") as f:
+            return json.load(f)
 
     def print_status(self) -> None:
         self.logger.info(f"Logged in as {self.user} (ID: {self.user.id})")  # type: ignore
