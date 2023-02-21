@@ -10,11 +10,6 @@ from discord.ext import commands
 
 from utils.logger import getMyLogger
 
-if not __debug__:
-    from dotenv import load_dotenv
-
-    load_dotenv()
-
 
 class Bot(commands.Bot):
     def __init__(self, **kwargs):
