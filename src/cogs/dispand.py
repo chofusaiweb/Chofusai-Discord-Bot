@@ -4,6 +4,8 @@ import discord
 from discord.ext import commands
 from dispander import dispand
 
+from utils.logger import getMyLogger
+
 if TYPE_CHECKING:
     # import some original class
     from src.bot import Bot
@@ -14,6 +16,7 @@ if TYPE_CHECKING:
 class Dispander(commands.Cog):
     def __init__(self, bot: "Bot"):
         self.bot = bot
+        self.logger = getMyLogger(__name__)
 
     @commands.Cog.listener("on_message")
     async def on_message(self, message: discord.Message):
@@ -26,7 +29,7 @@ class Dispander(commands.Cog):
             try:
                 await message.channel.send(embeds=embeds)
             except Exception as e:
-                self.bot.logger.error(e)
+                self.logger.error(e)
             return
 
 

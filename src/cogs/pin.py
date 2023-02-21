@@ -6,6 +6,7 @@ from discord import app_commands
 from discord.ext import commands
 
 from src.text.error import ErrorText
+from utils.logger import getMyLogger
 
 if TYPE_CHECKING:
     # import some original class
@@ -17,6 +18,7 @@ if TYPE_CHECKING:
 class PinMessage(commands.Cog):
     def __init__(self, bot: "Bot"):
         self.bot = bot
+        self.logger = getMyLogger(__name__)
         self.ctx_pin_message = app_commands.ContextMenu(
             name="Pin/Unpin message",
             guild_ids=[int(os.environ["GUILD_ID"])],
@@ -41,16 +43,16 @@ class PinMessage(commands.Cog):
             await message.pin(reason=f"by {author}")
         except discord.Forbidden as e:
             response = ErrorText.FORBIDDEN
-            self.bot.logger.error(response, exc_info=e)
+            self.logger.error(response, exc_info=e)
         except discord.NotFound as e:
             response = ErrorText.CHANNEL_OR_MESSAGE_NOT_FOUND
-            self.bot.logger.error(response, exc_info=e)
+            self.logger.error(response, exc_info=e)
         except discord.HTTPException as e:
             response = ErrorText.FAILED_TO_PIN
-            self.bot.logger.error(response, exc_info=e)
+            self.logger.error(response, exc_info=e)
         except Exception as e:
             response = ErrorText.UNKNOWN_ERROR
-            self.bot.logger.error(response, exc_info=e)
+            self.logger.error(response, exc_info=e)
         else:
             response = "ピン留めしました。"
 
@@ -61,16 +63,16 @@ class PinMessage(commands.Cog):
             await message.unpin(reason=f"by {author}")
         except discord.Forbidden as e:
             response = ErrorText.FORBIDDEN
-            self.bot.logger.error(response, exc_info=e)
+            self.logger.error(response, exc_info=e)
         except discord.NotFound as e:
             response = ErrorText.CHANNEL_OR_MESSAGE_NOT_FOUND
-            self.bot.logger.error(response, exc_info=e)
+            self.logger.error(response, exc_info=e)
         except discord.HTTPException as e:
             response = ErrorText.FAILED_TO_UNPIN
-            self.bot.logger.error(response, exc_info=e)
+            self.logger.error(response, exc_info=e)
         except Exception as e:
             response = ErrorText.UNKNOWN_ERROR
-            self.bot.logger.error(response, exc_info=e)
+            self.logger.error(response, exc_info=e)
         else:
             response = "ピン留めを解除しました。"
 
