@@ -1,7 +1,8 @@
 {
     "cogs": [
         "src.cogs.dispand",
-        "src.cogs.pin"
+        "src.cogs.pin",
+        "src.cogs.thread"
     ],
     "prefix": "!ch "
 }

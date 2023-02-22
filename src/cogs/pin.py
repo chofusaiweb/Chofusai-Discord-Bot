@@ -5,6 +5,9 @@ import discord
 from discord import app_commands
 from discord.ext import commands
 
+from src.text.error import ErrorText
+from utils.logger import getMyLogger
+
 if TYPE_CHECKING:
     # import some original class
     from src.bot import Bot
@@ -15,6 +18,7 @@ if TYPE_CHECKING:
 class PinMessage(commands.Cog):
     def __init__(self, bot: "Bot"):
         self.bot = bot
+        self.logger = getMyLogger(__name__)
         self.ctx_pin_message = app_commands.ContextMenu(
             name="Pin/Unpin message",
             guild_ids=[int(os.environ["GUILD_ID"])],
@@ -38,17 +42,17 @@ class PinMessage(commands.Cog):
         try:
             await message.pin(reason=f"by {author}")
         except discord.Forbidden as e:
-            response = "ピン留めに必要な権限がBotに与えられていません。"
-            self.bot.logger.error(response, exc_info=e)
+            response = ErrorText.FORBIDDEN
+            self.logger.error(response, exc_info=e)
         except discord.NotFound as e:
-            response = "メッセージやチャンネルが見つかりませんでした。"
-            self.bot.logger.error(response, exc_info=e)
+            response = ErrorText.CHANNEL_OR_MESSAGE_NOT_FOUND
+            self.logger.error(response, exc_info=e)
         except discord.HTTPException as e:
-            response = "ピン留めに失敗しました。\n既にチャンネルに50個以上のピン留めがある可能性があります。"
-            self.bot.logger.error(response, exc_info=e)
+            response = ErrorText.FAILED_TO_PIN
+            self.logger.error(response, exc_info=e)
         except Exception as e:
-            response = "不明なエラーが発生しました。"
-            self.bot.logger.error(response, exc_info=e)
+            response = ErrorText.UNKNOWN_ERROR
+            self.logger.error(response, exc_info=e)
         else:
             response = "ピン留めしました。"
 
@@ -58,17 +62,17 @@ class PinMessage(commands.Cog):
         try:
             await message.unpin(reason=f"by {author}")
         except discord.Forbidden as e:
-            response = "ピン留めの解除に必要な権限がBotに与えられていません。"
-            self.bot.logger.error(response, exc_info=e)
+            response = ErrorText.FORBIDDEN
+            self.logger.error(response, exc_info=e)
         except discord.NotFound as e:
-            response = "メッセージやチャンネルが見つかりませんでした。"
-            self.bot.logger.error(response, exc_info=e)
+            response = ErrorText.CHANNEL_OR_MESSAGE_NOT_FOUND
+            self.logger.error(response, exc_info=e)
         except discord.HTTPException as e:
-            response = "ピン留めの解除に失敗しました。"
-            self.bot.logger.error(response, exc_info=e)
+            response = ErrorText.FAILED_TO_UNPIN
+            self.logger.error(response, exc_info=e)
         except Exception as e:
-            response = "不明なエラーが発生しました。"
-            self.bot.logger.error(response, exc_info=e)
+            response = ErrorText.UNKNOWN_ERROR
+            self.logger.error(response, exc_info=e)
         else:
             response = "ピン留めを解除しました。"
 

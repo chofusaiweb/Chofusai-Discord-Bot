@@ -10,11 +10,6 @@ from discord.ext import commands
 
 from utils.logger import getMyLogger
 
-if not __debug__:
-    from dotenv import load_dotenv
-
-    load_dotenv()
-
 
 class Bot(commands.Bot):
     def __init__(self, **kwargs):
@@ -90,15 +85,15 @@ class Bot(commands.Bot):
     #         traces_sample_rate=1.0,
     #     )
 
-    def run(self) -> None:  # type: ignore
+    def runner(self) -> None:
         try:
-            asyncio.run(self.runner())
+            asyncio.run(self._runner())
         except Exception as e:
             self.logger.critical("SystemExit Detected, shutting down...", exc_info=e)
             asyncio.run(self.shutdown(status=1))
             return
 
-    async def runner(self) -> None:
+    async def _runner(self) -> None:
         async with self:
             await self.start(os.environ["DISCORD_BOT_TOKEN"])
 

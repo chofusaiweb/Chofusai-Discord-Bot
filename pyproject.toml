@@ -12,6 +12,7 @@ discord-py = { git = "https://github.com/Rapptz/discord.py.git", rev = "master",
     "speed",
 ] }
 dispander = { git = "https://github.com/sushi-chaaaan/dispander.git", rev = "custom-embed" }
+redis = {version = "^4.5.1", extras = ["hiredis"]}
 
 
 [tool.poetry.group.dev.dependencies]
