@@ -526,12 +526,12 @@ voice = ["PyNaCl (>=1.3.0,<1.6)"]
 type = "git"
 url = "https://github.com/Rapptz/discord.py.git"
 reference = "master"
-resolved_reference = "2cde1133f96837fa7d899d75b1b7cdd8f10a8c44"
+resolved_reference = "3644f7849c2551ec0d57583328ff9e848070f9a8"
 
 [[package]]
 name = "dispander"
 version = "0.5.0"
-description = ""
+description = "Discord Message URL Expander"
 category = "main"
 optional = false
 python-versions = "*"
@@ -545,7 +545,7 @@ develop = false
 type = "git"
 url = "https://github.com/sushi-chaaaan/dispander.git"
 reference = "custom-embed"
-resolved_reference = "73fca4d07eeee46a34049871832d2752554d9a5a"
+resolved_reference = "0992994cd5980def96e9e684b067dd28c46caf65"
 
 [[package]]
 name = "flake8"
