@@ -29,12 +29,14 @@ class Dispander(commands.Cog):
             self.logger.error(e)
             embeds = []
 
-        if embeds:
-            try:
-                await message.channel.send(embeds=embeds)
-            except Exception as e:
-                self.logger.error(e)
+        if embeds is None or embeds == []:
             return
+
+        try:
+            await message.channel.send(embeds=embeds, silent=message.flags.silent)
+        except Exception as e:
+            self.logger.error(e)
+        return
 
 
 async def setup(bot: "Bot"):
