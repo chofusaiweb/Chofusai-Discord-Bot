@@ -23,7 +23,11 @@ class Dispander(commands.Cog):
         if message.author.id == self.bot.user.id:  # type: ignore
             return
 
-        embeds: list[discord.Embed] = await dispand(message)
+        try:
+            embeds: list[discord.Embed] = await dispand(message)
+        except Exception as e:
+            self.logger.error(e)
+            embeds = []
 
         if embeds:
             try:
