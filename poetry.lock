@@ -501,7 +501,7 @@ files = [
 
 [[package]]
 name = "discord.py"
-version = "2.2.0a4752+g90d50bef"
+version = "2.3.0a4763+g7a0744c9"
 description = "A Python wrapper for the Discord API"
 category = "main"
 optional = false
@@ -526,7 +526,7 @@ voice = ["PyNaCl (>=1.3.0,<1.6)"]
 type = "git"
 url = "https://github.com/Rapptz/discord.py.git"
 reference = "master"
-resolved_reference = "7a0744c9a90a38570db631d21f2d28d626710b3e"
+resolved_reference = "78099992dd40d984e9cb8f6505a4e5ecd0115e57"
 
 [[package]]
 name = "dispander"
